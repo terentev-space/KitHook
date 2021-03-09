@@ -16,7 +16,7 @@
 
 methods: `get`, `put`, `post`, `delete`, `head`, `options`, `patch`, `trace` 
 
-types: `html`
+types: `http`
 
 ```json
 {
