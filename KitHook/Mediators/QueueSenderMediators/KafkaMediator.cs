@@ -3,6 +3,8 @@ using System.Threading.Tasks;
 using Confluent.Kafka;
 using KitHook.Mediators.QueueSenderMediators.Interfaces;
 using KitHook.Services.QueueService.Entities;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace KitHook.Mediators.QueueSenderMediators
 {
@@ -13,6 +15,6 @@ namespace KitHook.Mediators.QueueSenderMediators
 
         public virtual string GetName() => "Kafka";
 
-        protected string GetMessage(ConsumeResult<Ignore, string> data) => data.Message.Value;
+        protected string GetMessage(ConsumeResult<Ignore, string> data) => JsonConvert.DeserializeObject<JObject>(data.Message.Value).Value<string>("body");
     }
 }
